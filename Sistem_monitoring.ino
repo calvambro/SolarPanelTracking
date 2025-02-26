@@ -47,7 +47,8 @@ void setup() {
 
     // Gunakan hardware serial UART2 di ESP32
     PZEMSerial.begin(9600, SERIAL_8N2, 16, 17);  // Rx = GPIO 16, Tx = GPIO 17
-    
+
+    // Connecting to Wifi
     WiFi.begin(ssid, pass);
     Serial.print("Connecting to ");
     Serial.println(ssid);
@@ -61,6 +62,7 @@ void setup() {
     Serial.println("IP address: ");
     Serial.println(WiFi.localIP());
 
+    // Configure Local Time
     configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
     Serial.println("NTP setup completed.");
     
@@ -69,7 +71,8 @@ void setup() {
     pinMode(MAX485_DE, OUTPUT);
     digitalWrite(MAX485_RE, 0);
     digitalWrite(MAX485_DE, 0);
-    
+
+    // Initialize connection to PZEM017
     node.preTransmission(preTransmission);
     node.postTransmission(postTransmission);
     node.begin(pzemSlaveAddr, PZEMSerial);
@@ -81,6 +84,7 @@ void setup() {
 
 void loop() 
 {      
+        // set shunt and slave address
         if ((millis()- startMillis1 >= 10000) && (a ==1))
         {
           setShunt(pzemSlaveAddr);
@@ -89,7 +93,8 @@ void loop()
         }
 
         currentMillisPZEM = millis(); 
-        
+
+        // read data from PZEM017
         if (currentMillisPZEM - startMillisPZEM >= periodPZEM)    
         {    
           uint8_t result;  
@@ -125,11 +130,11 @@ void loop()
               return;
             }
 
-            // Format waktu menjadi string "dd/MM/yyyy HH:mm:ss"
+            // formatting date to string "dd/MM/yyyy HH:mm:ss"
             char datetime[25];
             strftime(datetime, sizeof(datetime), "%Y-%m-%d %H:%M:%S", &timeinfo);
 
-            // Kirim data ke API
+            // Construct JSON and send to server
             unsigned long currentMillisReadData = millis();
             if (currentMillisReadData - startMillisReadData >= periodReadData) {
               HTTPClient http;
@@ -137,7 +142,7 @@ void loop()
               http.addHeader("Content-Type", "application/json");
               http.addHeader("Authorization", "Bearer kunci_api");
               DynamicJsonDocument jsonDoc(2048);
-              jsonDoc["datetime"] = datetime; // Ganti dengan waktu sekarang
+              jsonDoc["datetime"] = datetime; 
               jsonDoc["volt"] = PZEMVoltage;
               jsonDoc["watt"] = PZEMPower;
               jsonDoc["ampere"] = PZEMCurrent;
