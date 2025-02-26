@@ -29,6 +29,7 @@ void setup() {
 
 void loop() {
   Speed = 100;
+  // read value from each ldr sensors
   valKa = analogRead(sensorLDRKa);
   valKi = analogRead(sensorLDRKi);
   analogWrite(R_EN, 500);
@@ -37,6 +38,7 @@ void loop() {
   Serial.println("Timur: " + String(valKa) + "  Barat: " + String(valKi));
   delay(50);
 
+  // comparing the value of LDR Sensors
   if(valKa <100 && valKi < 100){
     if(valKa - valKi < -10){
       analogWrite(RPWM, 0);
@@ -49,7 +51,7 @@ void loop() {
     } else{
       analogWrite(RPWM, 0);
       analogWrite(LPWM, 0);
-      delay(600000);
+      delay(600000); // Sleep for 10 minutes
     }
   }else if (valKa >300 && valKi > 300){
       analogWrite(RPWM, 0);
@@ -61,6 +63,6 @@ void loop() {
       analogWrite(LPWM, 0);
   }
   
-  delay(1000); // 10 Seconds
+  delay(1000);
 
 }
