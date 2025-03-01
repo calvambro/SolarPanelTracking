@@ -32,8 +32,8 @@ void loop() {
   // read value from each ldr sensors
   valKa = analogRead(sensorLDRKa);
   valKi = analogRead(sensorLDRKi);
-  analogWrite(R_EN, 500);
-  analogWrite(L_EN, 500);
+  analogWrite(R_EN, 512);
+  analogWrite(L_EN, 512);
 
   Serial.println("Timur: " + String(valKa) + "  Barat: " + String(valKi));
   delay(50);
