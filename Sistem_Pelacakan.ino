@@ -1,4 +1,4 @@
-// initialize switch actuator
+// initialize port motor driver
 const int RPWM = 8;
 const int LPWM = 9;
 const int R_EN = 10;
