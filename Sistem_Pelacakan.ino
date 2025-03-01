@@ -53,11 +53,6 @@ void loop() {
       analogWrite(LPWM, 0);
       delay(600000); // Sleep for 10 minutes
     }
-  }else if (valKa >300 && valKi > 300){
-      analogWrite(RPWM, 0);
-      analogWrite(LPWM, Speed);
-      Serial.println("resetting");
-      delay(2000);
   } else{
       analogWrite(RPWM, 0);
       analogWrite(LPWM, 0);
