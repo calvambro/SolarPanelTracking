@@ -37,7 +37,7 @@
         const unsigned long periodReadData = 1000;
 
         int ResetEnergy = 0;
-        int a = 1;
+        int isConfigured = 1;
         unsigned long startMillis1;
 
 void setup() {
@@ -85,11 +85,11 @@ void setup() {
 void loop() 
 {      
         // set shunt and slave address
-        if ((millis()- startMillis1 >= 10000) && (a ==1))
+        if ((millis()- startMillis1 >= 10000) && (isConfigured ==1))
         {
           setShunt(pzemSlaveAddr);
           changeAddress(0XF8, pzemSlaveAddr);    
-          a = 0;
+          isConfigured = 0;
         }
 
         currentMillisPZEM = millis(); 
