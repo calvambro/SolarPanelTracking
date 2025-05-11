@@ -8,13 +8,15 @@ This project utilizes an Arduino Mega, LDR sensors, a motor driver, and a linear
 
 ## Project Images
 
-![Picture1](https://github.com/user-attachments/assets/19c213ee-3a63-4cab-ba89-4bb0a34fd283)
+![image](https://github.com/user-attachments/assets/286fc18f-26ed-4e2e-a78e-867e91933e06)
+
 
 ---
 
 ## IoT Configuration
 
-![Picture2](https://github.com/user-attachments/assets/9eda966e-00de-496c-bcd4-cb1cb72a0deb)
+![image](https://github.com/user-attachments/assets/37ec57f0-f7e4-48f3-af6f-cd74e9b6a3e5)
+
 
 ---
 
