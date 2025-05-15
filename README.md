@@ -1,5 +1,8 @@
 # IoT Solar Panel Tracker
 
+![Arduino](https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=arduino&logoColor=white)
+![Express.js](https://img.shields.io/badge/-Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+
 An IoT-based solution that optimizes solar energy absorption by automatically adjusting solar panels' orientation using a tracking system. The system includes real-time monitoring of energy parameters for efficient energy utilization.
 
 ## Overview
